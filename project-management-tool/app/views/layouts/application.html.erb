@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>ProjectManagementTool</title>
+    <%= csrf_meta_tags %>
+
+    <%= stylesheet_link_tag    'application', media: 'all' %>
+    <%= javascript_include_tag 'application' %>
+  </head>
+
+  <body>
+        <%= link_to('Home', '/') %>
+        |
+        <%= link_to('Projects', projects_path) %>
+        |
+        <%= link_to('Tasks', tasks_path) %>
+        |
+        <%= link_to('Discussions', discussions_path) %>
+        |
+        <%#= link_to('Create new product', products_new_path) %>
+        <%= link_to('Create new project', new_project_path) %>
+
+        <% if flash.any? %>
+         <hr>
+         <% if flash[:notice] %>
+           <div class="flash-notice"><%= flash[:notice] %></div>
+         <% elsif flash[:alert] %>
+           <div class="flash-alert"><%= flash[:alert] %></div>
+         <% end %>
+         <hr>
+        <% end %>
+    <%= yield %>
+  </body>
+</html>
