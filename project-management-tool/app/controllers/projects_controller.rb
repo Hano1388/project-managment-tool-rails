@@ -1,4 +1,5 @@
 class ProjectsController < ApplicationController
+  before_action :authorize!, except: [:index, :show]
   def index
     @projects = Project.all
   end

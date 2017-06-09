@@ -20,6 +20,16 @@
         <%#= link_to('Create new product', products_new_path) %>
         <%= link_to('Create new project', new_project_path) %>
 
+        <% if current_user.present? %>
+          Welcome <%= current_user.first_name %>
+          <%= link_to 'Log Out', logout_path, method: :delete %>
+
+        <% else %>
+          <%= link_to 'Sign up', signup_path %>
+          |
+          <%= link_to 'Log In', login_path %>
+        <% end %>
+
         <% if flash.any? %>
          <hr>
          <% if flash[:notice] %>
