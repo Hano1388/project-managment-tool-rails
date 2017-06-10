@@ -2,6 +2,16 @@
 
 <h1><%= @project.title %></h1>
 <p><%= @project.description %></p>
+<p>Tags: <%= @project.tags.map(&:name).join(', ') %></p>
+
+<% favourite = @project.favourites.find_by(user: current_user) %>
+<% if favourite  %>
+  <%= link_to '👎', project_favourite_path(@project, favourite), method: :delete %>
+<% else %>
+  <%= link_to '👍', project_favourites_path(@project), method: :post %>
+<% end %>
+
+(<%= pluralize @project.favourites.count, 'favourite' %>)
 
 <%= link_to 'Edit', edit_project_path(@project) %>
 <%= link_to('Delete', project_path(@project),
